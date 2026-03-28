@@ -1,0 +1,38 @@
+{
+  "id": "neural-network",
+  "name": "Neural Networks",
+  "category": "STEM",
+  "quests": [
+    {
+      "id": "nn-q1",
+      "title": "Chapter 1: Foundations of Neural Networks",
+      "description": "Understand the basic building blocks of artificial neural networks.",
+      "prerequisites": [],
+      "tasks": [
+        { "id": "nn-q1-t1", "title": "Complete Quiz 1", "xp": 50, "type": "quiz" },
+        { "id": "nn-q1-t2", "title": "Watch Lecture Video", "xp": 50, "type": "video" },
+        { "id": "nn-q1-t3", "title": "Read Section 1.2", "xp": 50, "type": "reading" },
+        { "id": "nn-q1-t4", "title": "Practice Problems", "xp": 50, "type": "practice" }
+      ],
+      "reward": {
+        "xp": 100,
+        "badge": "Perceptron Pioneer",
+        "item": "Ancient Scroll: Deep Learning Basics"
+      }
+    },
+    {
+      "id": "nn-q2",
+      "title": "Chapter 2: Backpropagation",
+      "description": "Learn how networks learn from their mistakes.",
+      "prerequisites": ["nn-q1"],
+      "tasks": [
+        { "id": "nn-q2-t1", "title": "Derive the Chain Rule", "xp": 100, "type": "practice" },
+        { "id": "nn-q2-t2", "title": "Implement in Python", "xp": 150, "type": "practice" }
+      ],
+      "reward": {
+        "xp": 200,
+        "item": "Ancient Scroll: Backprop Master"
+      }
+    }
+  ]
+}
