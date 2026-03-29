@@ -1,7 +1,6 @@
 # Academic Odyssey
 
 ![Status](https://img.shields.io/badge/status-early%20validated%20prototype-6C63FF?style=for-the-badge)
-![Project](https://img.shields.io/badge/project-personal-1F8EFA?style=for-the-badge)
 ![AI](https://img.shields.io/badge/AI-LLM%20guided-00C2FF?style=for-the-badge)
 ![Learning](https://img.shields.io/badge/learning-quest%20based-F4B400?style=for-the-badge)
 ![Domain](https://img.shields.io/badge/domain-edtech-34A853?style=for-the-badge)
@@ -46,8 +45,6 @@ The current prototype includes:
 
 ## Current Status
 
-This repository is an **early validated prototype**.
-
 What is already in place:
 
 - scene-first UI architecture
@@ -55,13 +52,6 @@ What is already in place:
 - centralized route, navigation, and quest content config
 - AI provider abstraction
 - MiniMax-first provider configuration
-
-What is still in progress:
-
-- visual polish and hero asset quality
-- CSS decomposition and component boundary cleanup
-- broader automated test coverage
-- bundle size reduction
 
 ## Project Structure
 
