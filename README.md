@@ -3,15 +3,16 @@
 ![Status](https://img.shields.io/badge/status-early%20validated%20prototype-6C63FF?style=for-the-badge)
 ![AI](https://img.shields.io/badge/AI-LLM%20guided-00C2FF?style=for-the-badge)
 ![Learning](https://img.shields.io/badge/learning-quest%20based-F4B400?style=for-the-badge)
-![Domain](https://img.shields.io/badge/domain-edtech-34A853?style=for-the-badge)
 ![UI](https://img.shields.io/badge/UI-polish%20in%20progress-FF6F61?style=for-the-badge)
 
-Academic Odyssey is a scene-first edtech prototype that reframes study as a guided scholarly expedition.
-It combines quest-based learning flows, LLM-assisted study support, and a heritage-cyber visual system built around academy spaces rather than dashboard cards.
+Academic Odyssey is a scene-first edtech prototype that reframes study as a guided scholarly expedition.  
+It combines quest-based learning flows, LLM-assisted study support, and a heritage-cyber visual system built around academic spaces rather than dashboard cards.
+
+---
 
 ## Overview
 
-This project explores three ideas:
+This project is built around three ideas:
 
 - quest-based learning instead of flat task management
 - AI-guided planning, hinting, and review
@@ -31,6 +32,54 @@ The current prototype includes:
   - trial
   - completion
 
+---
+
+## Core Flow
+
+Academic Odyssey turns study into a guided loop:
+
+**goal → plan → quest → focused study → trial / review → progress feedback**
+
+The intended user flow is:
+
+1. define a study goal and current context  
+2. receive an AI-generated learning plan  
+3. enter the next quest step  
+4. complete focused study or trial-based practice  
+5. receive progress feedback and the next recommendation  
+
+## 
+
+### Scholar Login
+
+<img src="https://pan.nova.zz.ac/public/file/BQACAgUAAyEGAATJBRGbAAIC_WnIyjCZ0OlC6FBg8Y9BDZvdGzjcAAKRIAACtbpIVsh1r5Csqg7mOgQ" alt="image.png" style="zoom:50%;" />
+
+### Welcome Map
+
+<img src="https://pan.nova.zz.ac/public/file/BQACAgUAAyEGAATJBRGbAAIC_mnIyrNaa3LF_zhSfQcG6fVTOm7sAAKSIAACtbpIVgn8v8RTH1rTOgQ" alt="image.png" style="zoom: 50%;" />
+
+### Great Hall Dashboard
+
+<img src="https://pan.nova.zz.ac/public/file/BQACAgUAAyEGAATJBRGbAAIC_2nIyzsGPVCTup0_DLV1IZ5P252xAAKTIAACtbpIVgSSXRqrlWB1OgQ" alt="image.png" style="zoom:50%;" />
+
+### AI Planning Chamber
+
+<img src="https://pan.nova.zz.ac/public/file/BQACAgUAAyEGAATJBRGbAAIC9mnIim3WY6Wt38kpjc1g6yB2CyyvAALIIwACtbpAVkiMIck5ob61OgQ" alt="image.png" style="zoom:50%;" />
+
+### Quest Arc
+
+<img src="https://pan.nova.zz.ac/public/file/BQACAgUAAyEGAATJBRGbAAIC-WnIivn-z0xYxnVC-PSUb1SqT0wvAALLIwACtbpAVm8EbQe7ykJFOgQ" alt="image.png" style="zoom:50%;" />
+
+### Constellation Growth Route
+
+![image.png](https://pan.nova.zz.ac/public/file/BQACAgUAAyEGAATJBRGbAAIC-mnIpCC1rkn-550RMAFsNMuYgLXxAAI0IAACtbpIVizoTNdf0GJSOgQ)
+
+### Achievement Celebration
+
+![image.png](https://pan.nova.zz.ac/public/file/BQACAgUAAyEGAATJBRGbAAIC92nIirOoPjFx0qXvW3IZl1l1-M4gAALJIwACtbpAVoZGa3VB7nC2OgQ)
+
+---
+
 ## Tech Stack
 
 - React 19
@@ -41,7 +90,9 @@ The current prototype includes:
 - Express
 - Tailwind CSS v4
 - Lucide icons
-- Three / React Three Fiber for scene support
+- Three.js / React Three Fiber
+
+---
 
 ## Current Status
 
@@ -53,60 +104,13 @@ What is already in place:
 - AI provider abstraction
 - MiniMax-first provider configuration
 
-## Project Structure
+What still needs work:
 
-```text
-server/                     AI provider and server-side integration
-src/
-  components/
-    artwork/                visual anchor components
-    layout/                 shell, backdrop, lighting, nav
-    primitives/             low-level reusable scene UI
-    stages/                 page master stage containers
-  config/                   routes, navigation, scene metadata
-  data/                     quest and content definitions
-  lib/                      client engines and shared helpers
-  pages/                    route-level page shells
-  styles/                   scene system styles
-```
+- interface polish and consistency
+- motion and transition refinement
+- stronger visual alignment with the target experience
 
-## Getting Started
-
-### 1. Install dependencies
-
-```bash
-npm install
-```
-
-### 2. Configure environment variables
-
-Create a local `.env` file based on `.env.example`.
-
-Example:
-
-```env
-AI_PROVIDER=minimax
-MINIMAX_API_KEY=your_minimax_key
-APP_URL=http://localhost:3000
-```
-
-### 3. Start the development server
-
-```bash
-npm run dev
-```
-
-### 4. Build for production
-
-```bash
-npm run build
-```
-
-### 5. Run static type validation
-
-```bash
-npm run lint
-```
+---
 
 ## AI Provider Configuration
 
@@ -135,37 +139,27 @@ Notes:
 
 - provider secrets stay server-side only
 - MiniMax is the default provider in the current setup
-- `sk-cp-...` and `sk-api-...` keys may use different endpoint behavior depending on account setup
+- different API key formats may behave differently depending on provider account setup
 
-## Validation Scope
+**[ADD IMAGE: AI planning loop diagram here]**  
+**Suggested file:** `./docs/screenshots/ai-planning-loop.png`
 
-The current repository is suitable for:
+---
 
-- internal demos
-- concept validation
-- route-flow validation
-- prototype-level AI-assisted learning experiments
+## Project Structure
 
-It is not yet positioned as:
+```text
+server/                     AI provider and server-side integration
+src/
+  components/
+    artwork/                visual anchor components
+    layout/                 shell, backdrop, lighting, nav
+    primitives/             low-level reusable scene UI
+    stages/                 page master stage containers
+  config/                   routes, navigation, scene metadata
+  data/                     quest and content definitions
+  lib/                      client engines and shared helpers
+  pages/                    route-level page shells
+  styles/                   scene system styles
+```
 
-- a production deployment
-- a security-hardened service
-- a final visual design release
-
-## Known Gaps
-
-- AI output quality is functional but still being tuned
-- visual assets are still evolving
-- some legacy styles and component paths remain in transition
-- frontend chunks are still larger than ideal
-
-## Development Notes
-
-- user-facing runtime copy is English
-- secrets must not be committed
-- scene-first structure is preferred over panel-first page composition
-- route behavior should stay stable while UI and provider quality continue to improve
-
-## License
-
-No license has been declared yet.
