@@ -1,17 +1,54 @@
-import { ParchmentCard } from '../components/common/Card';
+import { ConstellationAstrolabeArtwork } from '../components/artwork/SceneArtworks';
+import { SkillTree } from '../components/dashboard/SkillTree';
+import {
+  HeroArtifact,
+  SceneChip,
+  SceneHeader,
+  TooltipCard,
+} from '../components/primitives/ScenePrimitives';
+import { ConstellationStage } from '../components/stages/SceneStages';
+import { useProgressStore } from '../store/useProgressStore';
 
 export const Reward = () => {
+  const skillPoints = useProgressStore((state) => state.skillPoints);
+
   return (
-    <div className="h-full flex flex-col items-center justify-center p-8">
-      <h1 className="font-display text-4xl mb-8 text-glow">The Artificer's Vault</h1>
-      
-      <ParchmentCard className="w-full max-w-4xl p-12 flex flex-col items-center text-center">
-        <div className="text-6xl mb-6 opacity-50">💎</div>
-        <h2 className="font-display text-2xl text-[var(--color-ink)] mb-4">Under Construction</h2>
-        <p className="font-serif text-[var(--color-ink-light)] max-w-lg">
-          The vault keepers are currently organizing the artifacts. Soon, you will be able to exchange your hard-earned XP and Mana for rare items, titles, and cosmetic upgrades.
-        </p>
-      </ParchmentCard>
+    <div className="scene-page scene-page-constellation">
+      <SceneHeader
+        eyebrow="Scholar's Constellation Dome"
+        title="Map the Long Arc of Growth"
+        lede="Survey the awakened disciplines, the branches now moving, and the distant stars waiting to be claimed."
+        chips={<SceneChip label="Available Skill Points" value={skillPoints} tone="gold" />}
+      />
+
+      <ConstellationStage
+        className="constellation-shell"
+        aside={(
+          <div className="constellation-shell__legend">
+            <TooltipCard
+              title="Reading the Sky"
+              subtitle="STEM sharpens analytic force, Humanities frames rhetoric and interpretation, and Arts opens the studio of creation."
+            />
+            <TooltipCard title="Unlocked" subtitle="Ready to extend farther into the branch." />
+            <TooltipCard title="Active" subtitle="Radiating influence through the current route." />
+            <TooltipCard title="Locked" subtitle="Awaiting prerequisite stars before it can awaken." />
+          </div>
+        )}
+        hero={(
+          <HeroArtifact
+            className="constellation-shell__hero"
+            artifact={<ConstellationAstrolabeArtwork />}
+            overlay={<SkillTree />}
+            children={(
+              <div className="constellation-shell__copy">
+                <p className="scene-panel__eyebrow">Central Astrolabe</p>
+                <h2>Scholar&apos;s Constellation</h2>
+                <p>The academy records every discipline as a star path. Follow the illuminated routes to see what may be awakened next.</p>
+              </div>
+            )}
+          />
+        )}
+      />
     </div>
   );
 };

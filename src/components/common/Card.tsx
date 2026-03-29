@@ -6,7 +6,7 @@ export const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
     <div
       ref={ref}
       className={cn(
-        'rounded-lg border-2 border-[var(--color-wood-light)] bg-[var(--color-wood-dark)]/80 backdrop-blur-sm text-[var(--color-parchment)] shadow-lg',
+        'brass-card rounded-[1.25rem] p-6 text-[var(--color-parchment-soft)]',
         className
       )}
       {...props}
@@ -20,12 +20,12 @@ export const ParchmentCard = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
     <div
       ref={ref}
       className={cn(
-        'rounded-md bg-parchment text-[var(--color-ink)] shadow-xl relative overflow-hidden',
+        'scroll-panel relative overflow-hidden text-[var(--color-ink)]',
         className
       )}
       {...props}
     >
-      <div className="relative z-10 p-6">
+      <div className="relative z-10">
         {props.children}
       </div>
     </div>

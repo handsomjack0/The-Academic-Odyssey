@@ -8,16 +8,16 @@ export const hintEngine = {
         },
         body: JSON.stringify({ question, context }),
       });
-      
+
       if (!response.ok) {
-        throw new Error('Failed to get hint');
+        throw new Error('Failed to fetch hint');
       }
-      
+
       const data = await response.json();
       return data.hint;
     } catch (error) {
-      console.error('Error getting hint:', error);
-      return 'The oracle is currently silent. Try again later.';
+      console.error('Failed to fetch hint:', error);
+      return 'The academy lens is quiet for the moment. Try summoning a hint again shortly.';
     }
   }
 };

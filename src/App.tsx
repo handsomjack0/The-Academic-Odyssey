@@ -18,27 +18,30 @@ import { Community } from './pages/Community';
 import { Profile } from './pages/Profile';
 import { Reward } from './pages/Reward';
 import { Library } from './pages/Library';
+import { Planner } from './pages/Planner';
+import { appRoutes, routePatterns } from './config/routes';
 
 export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path={appRoutes.login} element={<Login />} />
         
         <Route element={<AppShell />}>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/welcome" element={<Welcome />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/quest/:questId" element={<QuestDetails />} />
-          <Route path="/task/:taskId/study-method" element={<StudyMethod />} />
-          <Route path="/task/:taskId/deep-work" element={<DeepWork />} />
-          <Route path="/task/:taskId/alchemist-trial" element={<AlchemistTrial />} />
-          <Route path="/quest/completed" element={<QuestCompleted />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/reward" element={<Reward />} />
-          <Route path="/library" element={<Library />} />
+          <Route path={appRoutes.root} element={<Navigate to={appRoutes.login} replace />} />
+          <Route path={appRoutes.welcome} element={<Welcome />} />
+          <Route path={appRoutes.dashboard} element={<Dashboard />} />
+          <Route path={appRoutes.courses} element={<Courses />} />
+          <Route path={routePatterns.quest} element={<QuestDetails />} />
+          <Route path={routePatterns.studyMethod} element={<StudyMethod />} />
+          <Route path={routePatterns.deepWork} element={<DeepWork />} />
+          <Route path={routePatterns.alchemistTrial} element={<AlchemistTrial />} />
+          <Route path={appRoutes.questCompleted} element={<QuestCompleted />} />
+          <Route path={appRoutes.community} element={<Community />} />
+          <Route path={appRoutes.profile} element={<Profile />} />
+          <Route path={appRoutes.reward} element={<Reward />} />
+          <Route path={appRoutes.planner} element={<Planner />} />
+          <Route path={appRoutes.library} element={<Library />} />
         </Route>
       </Routes>
     </Router>

@@ -1,23 +1,36 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { SideNav } from './SideNav';
 import { useProgressStore } from '../../store/useProgressStore';
+import { WoodFooterBar } from './WoodFooterBar';
+import { SceneBackdrop } from './SceneBackdrop';
+import { SceneLighting } from './SceneLighting';
+import { getSceneGroup, getSceneLightingVariant } from '../../config/routes';
 
 export const AppShell = () => {
   const userId = useProgressStore((state) => state.userId);
+  const location = useLocation();
 
   if (!userId) {
     return <Outlet />;
   }
 
+  const sceneGroup = getSceneGroup(location.pathname);
+  const canvasVariant = getSceneLightingVariant(sceneGroup);
+
   return (
-    <div className="flex h-screen overflow-hidden bg-[var(--color-wood-dark)] text-[var(--color-parchment)]">
+    <div className={`odyssey-app-shell odyssey-app-shell-${sceneGroup}`}>
       <SideNav />
-      <main className="flex-1 overflow-y-auto relative">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none" />
-        <div className="relative z-10 p-8 h-full">
-          <Outlet />
-        </div>
-      </main>
+      <div className="odyssey-app-shell__body">
+        <main className="odyssey-app-shell__viewport">
+          <SceneBackdrop group={sceneGroup} />
+          <div className="odyssey-scene__grid" />
+          <SceneLighting variant={canvasVariant} />
+          <div className="odyssey-app-shell__content">
+            <Outlet />
+          </div>
+        </main>
+        <WoodFooterBar compact />
+      </div>
     </div>
   );
 };

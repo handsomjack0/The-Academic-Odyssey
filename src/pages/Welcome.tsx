@@ -1,55 +1,106 @@
+import { ArrowRight, Sparkles, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { JourneyGatewayArtwork } from '../components/artwork/SceneArtworks';
+import {
+  BrassAction,
+  HeroArtifact,
+  PathNode,
+  SceneChip,
+  SceneHeader,
+} from '../components/primitives/ScenePrimitives';
+import { JourneyGatewayStage } from '../components/stages/SceneStages';
 import { useProgressStore } from '../store/useProgressStore';
+import { appRoutes } from '../config/routes';
+
+const gatewayPaths = [
+  {
+    id: 'neural-network',
+    title: 'Neural Network Expedition',
+    summary: 'Advance the current questline through core theory, guided practice, and the halls of trial.',
+  },
+  {
+    id: 'arts',
+    title: 'Creation Workshop Branch',
+    summary: 'Move into design craft, expressive studies, and the studio wing of the academy.',
+  },
+  {
+    id: 'legacy',
+    title: 'Legacy of Achievement',
+    summary: 'Review your unlocked branches, long arc of honors, and the stars waiting beyond today.',
+  },
+] as const;
 
 export const Welcome = () => {
   const navigate = useNavigate();
-  const setCurrentPath = useProgressStore(state => state.setCurrentPath);
+  const { level, skillPoints, streak, setCurrentPath } = useProgressStore();
 
   const handleSelectPath = (pathId: string) => {
     setCurrentPath(pathId);
-    navigate('/dashboard');
+    navigate(appRoutes.dashboard);
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8 relative overflow-hidden">
-      {/* Background Library */}
-      <div className="absolute inset-0 pointer-events-none opacity-30 bg-[url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-wood-dark)] via-[var(--color-wood-dark)]/80 to-[var(--color-wood-dark)]/90 pointer-events-none" />
+    <div className="scene-page scene-page-entrance scene-page-gateway">
+      <SceneHeader
+        eyebrow="Journey Gateway"
+        title="Welcome to the Odyssey"
+        lede="Choose the path you will advance today, then step into the Great Hall."
+        chips={(
+          <>
+            <SceneChip label="Scholar Rank" value={`Level ${level}`} />
+            <SceneChip label="Skill Points" value={skillPoints} tone="gold" />
+          </>
+        )}
+      />
 
-      <h1 className="font-display text-6xl mb-16 text-center text-[var(--color-parchment)] tracking-wider z-10">Welcome to the Odyssey</h1>
-      
-      <div className="flex gap-12 max-w-6xl w-full z-10">
-        <div className="flex-1 relative bg-scroll p-4 rounded-sm border-2 border-[var(--color-wood-light)] shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-          <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center rounded-sm border-2 border-[var(--color-wood-dark)] opacity-80 mix-blend-multiply" />
-          <div className="absolute top-1/4 left-1/4 bg-[var(--color-wood-dark)] text-[var(--color-cyan-glow)] text-sm p-4 rounded-sm border-2 border-[var(--color-cyan-glow)] box-glow font-sans font-bold tracking-wider uppercase">
-            Student Population:<br/>5000 Active Questers
-          </div>
-        </div>
-        
-        <div className="w-96 flex flex-col items-center bg-scroll p-8 rounded-sm border-2 border-[var(--color-wood-light)] shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-          <h2 className="font-display text-3xl mb-8 text-[var(--color-ink)] border-b-2 border-[var(--color-ink)] pb-2 w-full text-center">Quest Paths</h2>
-          
-          <div className="space-y-6 w-full">
-            <button onClick={() => handleSelectPath('neural-network')} className="w-full p-6 border-2 border-[var(--color-wood-light)] rounded-sm hover:border-[var(--color-cyan-glow)] hover:box-glow transition-all flex flex-col items-center gap-3 group relative overflow-hidden bg-[var(--color-parchment-dark)]">
-              <div className="absolute inset-0 bg-[var(--color-cyan-glow)] opacity-0 group-hover:opacity-10 transition-opacity" />
-              <div className="text-[var(--color-wood-dark)] group-hover:text-[var(--color-cyan-glow)] transition-colors text-5xl">⚗️</div>
-              <span className="font-sans font-bold text-[var(--color-ink)] tracking-wider uppercase">Master the Sciences</span>
-            </button>
-            
-            <button onClick={() => handleSelectPath('arts')} className="w-full p-6 border-2 border-[var(--color-wood-light)] rounded-sm hover:border-[var(--color-cyan-glow)] hover:box-glow transition-all flex flex-col items-center gap-3 group relative overflow-hidden bg-[var(--color-parchment-dark)]">
-              <div className="absolute inset-0 bg-[var(--color-cyan-glow)] opacity-0 group-hover:opacity-10 transition-opacity" />
-              <div className="text-[var(--color-wood-dark)] group-hover:text-[var(--color-cyan-glow)] transition-colors text-5xl">📜</div>
-              <span className="font-sans font-bold text-[var(--color-ink)] tracking-wider uppercase">Explore the Arts</span>
-            </button>
-            
-            <button onClick={() => handleSelectPath('legacy')} className="w-full p-6 border-2 border-[var(--color-wood-light)] rounded-sm hover:border-[var(--color-cyan-glow)] hover:box-glow transition-all flex flex-col items-center gap-3 group relative overflow-hidden bg-[var(--color-parchment-dark)]">
-              <div className="absolute inset-0 bg-[var(--color-cyan-glow)] opacity-0 group-hover:opacity-10 transition-opacity" />
-              <div className="text-[var(--color-wood-dark)] group-hover:text-[var(--color-cyan-glow)] transition-colors text-5xl">🔥</div>
-              <span className="font-sans font-bold text-[var(--color-ink)] tracking-wider uppercase">Forge your Legacy</span>
-            </button>
-          </div>
-        </div>
-      </div>
+      <JourneyGatewayStage
+        className="gateway-stage"
+        hero={(
+          <HeroArtifact
+            className="gateway-stage__hero"
+            artifact={<JourneyGatewayArtwork />}
+            overlay={(
+              <div className="gateway-stage__nodes">
+                {gatewayPaths.map((path, index) => (
+                  <PathNode
+                    key={path.id}
+                    title={path.title}
+                    subtitle={path.summary}
+                    className={`gateway-stage__node gateway-stage__node-${index + 1}`}
+                    active={index === 0}
+                    onClick={() => handleSelectPath(path.id)}
+                  >
+                    <span className="gateway-stage__node-arrow">
+                      Choose
+                      <ArrowRight size={16} />
+                    </span>
+                  </PathNode>
+                ))}
+              </div>
+            )}
+            children={(
+              <div className="gateway-stage__content">
+                <p className="scene-panel__eyebrow">Entrance Rite</p>
+                <h2>Set the route for today&apos;s advance.</h2>
+                <p>The map altar reads the path you choose and opens the right chamber beyond the gate.</p>
+                <div className="gateway-stage__status">
+                  <div>
+                    <Sparkles size={18} />
+                    <span>Available skill points</span>
+                    <strong>{skillPoints}</strong>
+                  </div>
+                  <div>
+                    <Star size={18} />
+                    <span>Current streak</span>
+                    <strong>{streak} days</strong>
+                  </div>
+                </div>
+                <BrassAction onClick={() => handleSelectPath('neural-network')}>Enter the Great Hall</BrassAction>
+              </div>
+            )}
+          />
+        )}
+      />
     </div>
   );
 };
